@@ -1,0 +1,23 @@
+<p>
+  <b>Title:</b>
+  <%=h @campaign.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @campaign.description %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%=h @campaign.subject %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%=h @campaign.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
+<%= link_to 'Back', campaigns_path %>

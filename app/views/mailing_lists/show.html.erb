@@ -1,0 +1,18 @@
+<p>
+  <b>Title:</b>
+  <%=h @mailing_list.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @mailing_list.description %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @mailing_list.category %>
+</p>
+
+
+<%= link_to 'Edit', edit_mailing_list_path(@mailing_list) %> |
+<%= link_to 'Back', mailing_lists_path %>
