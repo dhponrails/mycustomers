@@ -1,10 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :customers
-
   map.resources :campaigns
 
-  map.resources :mailing_lists
 
+  map.resources :mailing_lists, :has_many => :customers
+
+
+  map.resources :customers
+  
+  map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate'  
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
