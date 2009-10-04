@@ -30,7 +30,7 @@
   
   Mailing Lists: <br />
   <% @mailing_lists.each do |mailing_list| %>
- 
+   <%= check_box_tag "campaign[mailing_list_ids][]", mailing_list.id, @campaign.mailing_list.include?(mailing_list)%>
     <%= mailing_list.title %><br />
   <% end %>
   

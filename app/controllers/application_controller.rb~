@@ -2,9 +2,22 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+include AuthenticatedSystem
+
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+ before_filter :set_current_user_in_thread  
+   
+ def set_current_user_in_thread  
+   Thread.current[:user_id] = session[:user_id]  
+ end  
+   
+ # User.rb  
+ def self.current  
+   self.find(Thread.current[:user_id])  
+ end  
+
 end

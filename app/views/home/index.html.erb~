@@ -5,7 +5,7 @@
  <h2>Hello, <%= @user.login %></h2>
  
  <ul>
- <li> <% link_to "Manage Mailing Lists", mailing_lists_path %></li>
+ <li> <%= link_to "Manage Mailing Lists", mailing_lists_path %></li>
  <li> Create Email Campaign </li>
  <li> Manage Existing Campaigns </li>
  <li> Browse Designs </li>

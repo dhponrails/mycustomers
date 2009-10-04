@@ -17,14 +17,13 @@
 <%= render :partial => "emailer/preview" %>
 <h1>Send Email</h1>
 <% form_tag :action => 'sendmail' do %>
-
+<%= hidden_field_tag  %>
 <p><label for="email_subject">Subject</label>:
 <%= text_field 'email', 'subject' %></p>
 <p><label for="email_recipient">Recipient</label>:
 <%= text_field 'email', 'recipient' %></p>
 <p><label for="email_message">Message</label><br/>
 <%= text_area 'email', 'message' %></p>
-<%= hidden_field_tag "email_id", @campaign.id %>
 <%= submit_tag "Send" %>
 <% end %>
 

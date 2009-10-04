@@ -93,15 +93,15 @@ before_filter :login_required
     @mailing_list = MailingList.find(params[:id])
    if correct_user?
     @mailing_list.destroy
-   else
-    flash[:notice] = "You do not have access to do this"
-    redirect_to(mailing_lists_url)
-   end
+
     respond_to do |format|
       format.html { redirect_to(mailing_lists_url) }
       format.xml  { head :ok }
     end
-   
+   else
+    flash[:notice] = "You do not have access to do this"
+    redirect_to(mailing_lists_url)
+   end
   end
 
 private

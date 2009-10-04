@@ -1,4 +1,4 @@
-<h1>New campaign</h1>
+<h1>Editing campaign</h1>
 
 <% form_for(@campaign) do |f| %>
   <%= f.error_messages %>
@@ -19,25 +19,10 @@
     <%= f.label :content %><br />
     <%= f.text_area :content %>
   </p>
-
-  Designs:<br />
- 
-
-  <% @designs.each do |design| %>
-  <%= radio_button(:campaign, :design_id, design.id) %>
-    <img src=/<%= design.image_url %> /><br />
-  <% end %>
-  
-  Mailing Lists: <br />
-  <% @mailing_lists.each do |mailing_list| %>
- 
-    <%= mailing_list.title %><br />
-  <% end %>
-  
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Update' %>
   </p>
-
 <% end %>
 
+<%= link_to 'Show', @campaign %> |
 <%= link_to 'Back', campaigns_path %>

@@ -17,6 +17,7 @@ before_filter :login_required
   # GET /mailing_lists/1.xml
   def show
     @mailing_list = MailingList.find(params[:id])
+    @customers = @mailing_list.customers.all
    if correct_user?
     respond_to do |format|
       format.html # show.html.erb

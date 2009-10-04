@@ -1,0 +1,8 @@
+<table  >
+<tr>
+   <td style="text-align:center;"> 
+   <%=@campaign.content %>
+   
+   </td>
+</tr>
+</table>
