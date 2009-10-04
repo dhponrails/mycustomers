@@ -1,10 +1,11 @@
 class CustomersController < ApplicationController
-before_filter :login_required, :get_mailing_list
+before_filter :login_required, :check_user
   # GET /customers
   # GET /customers.xml
   def index
-
-    @customers = @mailinglist.Customer.all
+     @mailing_list = MailingList.find(params[:mailing_list_id]) 
+     
+    @customers = Customer.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,8 +16,8 @@ before_filter :login_required, :get_mailing_list
   # GET /customers/1
   # GET /customers/1.xml
   def show
-
-    @customer = @mailinglist.Customer.find(params[:id])
+      @mailing_list = MailingList.find(params[:mailing_list_id])
+    @customer = Customer.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,8 +28,8 @@ before_filter :login_required, :get_mailing_list
   # GET /customers/new
   # GET /customers/new.xml
   def new
-
-    @customer = @mailinglist.Customer.new
+   @mailing_list = MailingList.find(params[:mailing_list_id])
+    @customer = Customer.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,20 +39,21 @@ before_filter :login_required, :get_mailing_list
 
   # GET /customers/1/edit
   def edit
-
-    @customer = @mailinglist.Customer.find(params[:id])
+      @mailing_list = MailingList.find(params[:mailing_list_id])
+    @customer = Customer.find(params[:id])
   end
 
   # POST /customers
   # POST /customers.xml
   def create
-
-    @customer = @mailinglist.Customer.new(params[:customer])
+      @mailing_list = MailingList.find(params[:mailing_list_id])
+   params[:customer].merge!(:mailing_list_id => @mailing_list.id)
+    @customer = Customer.new(params[:customer])
 
     respond_to do |format|
       if @customer.save
         flash[:notice] = 'Customer was successfully created.'
-        format.html { redirect_to(@customer) }
+        format.html { redirect_to mailing_list_customers_path }
         format.xml  { render :xml => @customer, :status => :created, :location => @customer }
       else
         format.html { render :action => "new" }
@@ -63,13 +65,13 @@ before_filter :login_required, :get_mailing_list
   # PUT /customers/1
   # PUT /customers/1.xml
   def update
-
+      @mailing_list = MailingList.find(params[:mailing_list_id])
     @customer = Customer.find(params[:id])
 
     respond_to do |format|
       if @customer.update_attributes(params[:customer])
         flash[:notice] = 'Customer was successfully updated.'
-        format.html { redirect_to(@customer) }
+        format.html { redirect_to mailing_list_customers_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,19 +83,25 @@ before_filter :login_required, :get_mailing_list
   # DELETE /customers/1
   # DELETE /customers/1.xml
   def destroy
-
+      @mailing_list = MailingList.find(params[:mailing_list_id])
     @customer = Customer.find(params[:id])
     @customer.destroy
 
     respond_to do |format|
-      format.html { redirect_to(customers_url) }
+      format.html { redirect_to(mailing_list_customers_url) }
       format.xml  { head :ok }
     end
   end
 
 private
-  def get_mailing_list
-     @mailinglist = current_user.MailingList.find(params[:mailing_list_id])
-  end  
-  
+  def check_user
+     @mailing_list = MailingList.find(params[:mailing_list_id])
+     if @mailing_list.user_id == current_user.id
+       flash[:notice] = 'ok'
+       true      
+     else
+       flash[:notice] = 'Not authorized'
+       redirect_to(@mailing_list)
+     end
+  end
 end

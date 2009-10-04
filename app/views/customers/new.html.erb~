@@ -1,8 +1,9 @@
-<h1>Editing customer</h1>
+<h1>New customer</h1>
 
-<% form_for([@mailing_list, @customer]) do |f| %>
+<% form_for([:mailing_list, @customer]) do |f| %>
   <%= f.error_messages %>
-
+ <%= hidden_field_tag :mailing_list_id, params[:mailing_list_id] %>
+  <%= @mailing_list.id %>
   <p>
     <%= f.label :firstname %><br />
     <%= f.text_field :firstname %>
@@ -32,9 +33,8 @@
     <%= f.text_field :subscriptionkey %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Create' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', [@mailing_list, @customer] %> |
-<%= link_to 'Back', mailing_list_customers_path %>
+<%= link_to 'Back', mailing_list_customers_path(@mailing_list) %>

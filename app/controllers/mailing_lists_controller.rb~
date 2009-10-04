@@ -56,7 +56,7 @@ before_filter :login_required
 
     respond_to do |format|
       if @mailing_list.save
-        flash[:notice] = 'MailingList was successfully created.'
+        flash[:notice] = 'Mailing List was successfully created.'
         format.html { redirect_to(@mailing_list) }
         format.xml  { render :xml => @mailing_list, :status => :created, :location => @mailing_list }
       else
@@ -73,7 +73,7 @@ before_filter :login_required
    if correct_user?
     respond_to do |format|
       if @mailing_list.update_attributes(params[:mailing_list])
-        flash[:notice] = 'MailingList was successfully updated.'
+        flash[:notice] = 'Mailing List was successfully updated.'
         format.html { redirect_to(@mailing_list) }
         format.xml  { head :ok }
       else

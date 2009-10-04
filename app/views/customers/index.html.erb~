@@ -21,7 +21,7 @@
     <td><%=h customer.phone %></td>
     <td><%=h customer.subscriptionkey %></td>
     <td><%= link_to 'Show', [@mailing_list, customer] %></td>
-    <td><%= link_to 'Edit', edit_mailing_list_customer_path(@mailing_list, customer) %></td>
+    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
     <td><%= link_to 'Destroy', [@mailing_list, customer], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
