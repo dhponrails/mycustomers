@@ -3,3 +3,4 @@ tmp/**/*
 doc/api
 doc/app
 config/database.yml
+config/environments/development.rb
