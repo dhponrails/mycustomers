@@ -10,6 +10,14 @@ before_filter :login_required, :check_user
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @customers }
+    format.csv { 
+                   csv_file = Customer.to_csv(current_user.id)
+                   send_data csv_file, :type =>  'text/csv', :disposition => 'attachment;
+filename=output.csv'
+
+                 
+
+                 }
     end
   end
 
@@ -22,6 +30,7 @@ before_filter :login_required, :check_user
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @customer }
+      
     end
   end
 
@@ -90,8 +99,11 @@ before_filter :login_required, :check_user
     respond_to do |format|
       format.html { redirect_to(mailing_list_customers_url) }
       format.xml  { head :ok }
+    
     end
   end
+
+
 
 private
   def check_user

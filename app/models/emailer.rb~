@@ -27,10 +27,10 @@ class Emailer < ActionMailer::Base
 ##             :body => File.read("#{RAILS_ROOT}/public/images/designs/2.png")
 
 ##    end
-  content_type => 'text/html'
+  content_type  'text/html'
       @subject = subject
       @recipients = recipient
-      @from = 'no-reply@yourdomain.com'
+      @from = '@yourdomain.com'
       @sent_on = sent_at
 	  @body["title"] = 'This is title'
   	  @body["email"] = 'sender@yourdomain.com'

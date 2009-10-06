@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-     @title = 'Email Marketing'
+     @title = 'Bay Web Soft Marketing'
      @user = current_user
   end
 

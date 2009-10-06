@@ -33,6 +33,6 @@
   <%=h @customer.subscriptionkey %>
 </p>
 
+
 <%= link_to 'Edit', edit_mailing_list_customer_path(@mailing_list, @customer) %> |
 <%= link_to 'Back', mailing_list_customers_path(@mailing_list) %>
-

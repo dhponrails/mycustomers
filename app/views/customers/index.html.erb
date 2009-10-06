@@ -1,4 +1,4 @@
-<h1>Listing customers</h1>
+<h1>Listing customers for <%= @mailing_list.title %></h1>
 
 <table>
   <tr>
@@ -29,4 +29,5 @@
 
 <br />
 
-<%= link_to 'New customer', new_mailing_list_customer_path %>
+<%= link_to 'New customer', new_mailing_list_customer_path %> | 
+<%= link_to 'Back to Mailing Lists', mailing_lists_path %>

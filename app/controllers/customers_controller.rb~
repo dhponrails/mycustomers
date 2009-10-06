@@ -10,6 +10,10 @@ before_filter :login_required, :check_user
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @customers }
+    format.csv { 
+                   render :csv => @customers
+
+                 }
     end
   end
 
@@ -22,6 +26,7 @@ before_filter :login_required, :check_user
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @customer }
+      
     end
   end
 
@@ -90,14 +95,17 @@ before_filter :login_required, :check_user
     respond_to do |format|
       format.html { redirect_to(mailing_list_customers_url) }
       format.xml  { head :ok }
+    
     end
   end
+
+
 
 private
   def check_user
      @mailing_list = MailingList.find(params[:mailing_list_id])
      if @mailing_list.user_id == current_user.id
-       flash[:notice] = 'ok'
+       
        true      
      else
        flash[:notice] = 'Not authorized'
