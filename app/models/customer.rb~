@@ -1,5 +1,5 @@
 class Customer < ActiveRecord::Base
-include Authentication
+include ::Authentication
   
 belongs_to :mailing_list
 
