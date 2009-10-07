@@ -1,5 +1,5 @@
 class Customer < ActiveRecord::Base
-include ::Authentication
+include Authentication
   
 belongs_to :mailing_list
 
@@ -10,6 +10,7 @@ belongs_to :mailing_list
   def self.to_csv(id)
     csv_file = "first name, last name, birthmonth, birthday, email \n"
     @customers = MailingList.find_by_user_id(id).customers
+#    @customers = self.all
     @customers.each do |customer|
       csv_file << "#{customer.firstname}, #{customer.lastname}, #{customer.birthmonth}, #{customer.birthday}, #{customer.email}\n"
       

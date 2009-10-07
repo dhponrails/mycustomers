@@ -11,7 +11,12 @@ before_filter :login_required, :check_user
       format.html # index.html.erb
       format.xml  { render :xml => @customers }
     format.csv { 
-                   render :csv => @customers
+                   #csv_file = Customer.to_csv(current_user.id)
+                   csv_file = Customer.to_csv
+                   send_data csv_file, :type =>  'text/csv', :disposition => 'attachment;
+filename=output.csv'
+
+                 
 
                  }
     end
