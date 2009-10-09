@@ -116,9 +116,9 @@ before_filter :login_required
 	  subject = email["subject"]
 	  message = email["message"]
           id = params["email_id"]
+          user_id = current_user.id
 
-
-      Emailer.deliver_contact(recipient, subject, message, id)
+      Emailer.deliver_contact(recipient, subject, message, id, user_id)
       return if request.xhr?
       render :text => 'Message sent successfully'
 

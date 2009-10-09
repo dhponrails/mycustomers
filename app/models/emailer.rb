@@ -1,9 +1,16 @@
 class Emailer < ActionMailer::Base
 
   
-  def contact(recipient, subject, message, id, sent_at = Time.now)
+  def contact(recipient, subject, message, id, user_id, sent_at = Time.now)
+   #must also verify if current_user
      @campaign = Campaign.find_by_id(id)
-    @design = Design.find_by_id(@campaign.design_id)
+     if @campaign.user_id == user_id
+       @design = Design.find_by_id(@campaign.design_id)     	
+  
+
+   
+   
+   
   #  @mailing_lists = MailingList.find_all_by_user_id(current_user.id)
 ##    recipients [recipient]
 ##    from "dustinhuypham@gmail.com"
@@ -36,7 +43,11 @@ class Emailer < ActionMailer::Base
   	  @body["email"] = 'sender@yourdomain.com'
    	  @body["message"] = message
       @headers = {}
+   else
+     flash[:notice] = 'Can only send own campaigns.'
+      
    end
+  end
 
 
 end

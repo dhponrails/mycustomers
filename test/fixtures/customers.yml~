@@ -1,7 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  id: 1
   firstname: MyString
   lastname: MyString
   birthmonth: 1
@@ -9,7 +8,7 @@ one:
   email: MyString
   phone: MyString
   subscriptionkey: MyString
-  mailing_list_id: 1
+
 two:
   firstname: MyString
   lastname: MyString

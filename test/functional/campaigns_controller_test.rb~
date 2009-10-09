@@ -2,9 +2,7 @@ require 'test_helper'
 
 class CampaignsControllerTest < ActionController::TestCase
   
-  def setup
-    @request.session[:user_id] = users(:quentin).id
-  end 
+ 
 
   test "should get index" do
     get :index
@@ -19,7 +17,7 @@ class CampaignsControllerTest < ActionController::TestCase
 
   test "should create campaign" do
     assert_difference('Campaign.count') do
-    
+      @request.session[:user_id] = users(:quentin).id
       post :create, :campaign => { }
     end
 

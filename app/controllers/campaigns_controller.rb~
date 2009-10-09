@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-before_filter :login_required  
+#before_filter :login_required  
   # GET /campaigns
   # GET /campaigns.xml
   def index
@@ -116,11 +116,11 @@ before_filter :login_required
 	  subject = email["subject"]
 	  message = email["message"]
           id = params["email_id"]
-   render :text => id
+          user_id = current_user.id
 
-      #Emailer.deliver_contact(recipient, subject, message, id)
-      #return if request.xhr?
-      #render :text => 'Message sent successfully'
+      Emailer.deliver_contact(recipient, subject, message, id, user_id)
+      return if request.xhr?
+      render :text => 'Message sent successfully'
 
   
   end

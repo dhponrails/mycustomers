@@ -6,7 +6,6 @@ one:
   description: MyText
   subject: MyString
   content: MyText
-  design_id: 1
   user_id: 1
 
 two:

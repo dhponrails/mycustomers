@@ -35,6 +35,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-
+  def run_with_controller( controller_class )
+    old_controller = @controller
+    @controller = controller_class.new
+    yield
+    @controller = old_controller
+  end
 
 end
