@@ -7,6 +7,8 @@ belongs_to :mailing_list
   validates_length_of       :email,    :within => 6..100 #r@a.wk
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
+after_create :send_opt_in 
+
   def self.to_csv(id)
     csv_file = "first name, last name, birthmonth, birthday, email \n"
     @customers = MailingList.find_by_user_id(id).customers
@@ -15,6 +17,10 @@ belongs_to :mailing_list
       
     end
     csv_file
+  end
+  
+  def send_opt_in
+  
   end
 
 end

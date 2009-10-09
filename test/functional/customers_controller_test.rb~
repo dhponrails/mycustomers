@@ -46,6 +46,6 @@ class CustomersControllerTest < ActionController::TestCase
       delete :destroy, :id => customers(:one).to_param, :mailing_list_id => 1
     end
 
-    assert_redirected_to customers_path
+mailing_list_customers_url
   end
 end  

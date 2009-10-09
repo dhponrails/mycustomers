@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
-before_filter :login_required, :check_user
+before_filter :login_required, :except => [:opt_in, :opt_out]
+before_filter :check_user, :except => [:opt_in, :opt_out]
   # GET /customers
   # GET /customers.xml
   def index
@@ -103,8 +104,16 @@ filename=output.csv'
     end
   end
 
-
-
+  def opt_in
+     @code = params[:opt_in_code]
+     @customerid = params[:customer_id]
+     #redirect_back_or_default('/')
+  end
+ 
+  def opt_out
+  
+  end
+ 
 private
   def check_user
      @mailing_list = MailingList.find(params[:mailing_list_id])

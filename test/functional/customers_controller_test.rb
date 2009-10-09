@@ -3,7 +3,7 @@ require 'test_helper'
 class CustomersControllerTest < ActionController::TestCase
   def setup
     @request.session[:user_id] = users(:quentin).id
-    @mailing_list = MailingList.find_by_id(1)
+
   end 
 
   
